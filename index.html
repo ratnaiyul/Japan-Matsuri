@@ -117,9 +117,17 @@
     }
 
     #status {
-      font-weight: bold;
-      margin-top: 12px;
-    }
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+#status.cukup {
+  color: #16a34a;
+}
+
+#status.kurang {
+  color: #dc2626;
+}
 
     .reset {
       display: block;
@@ -232,15 +240,17 @@ const uang = Number(
 
       const status = document.getElementById("status");
 
-      if (uang === 0 && total === 0) {
-        status.textContent = "";
-      } else if (uang < total) {
-        status.textContent = "Uang masih kurang " +
-          rupiah(total - uang);
-      } else {
-        status.textContent = "Pembayaran cukup";
-      }
-    }
+     if (uang === 0 && total === 0) {
+  status.textContent = "";
+  status.className = "";
+} else if (uang < total) {
+  status.textContent = "Pembayaran kurang " +
+    rupiah(total - uang);
+  status.className = "kurang";
+} else {
+  status.textContent = "Pembayaran cukup";
+  status.className = "cukup";
+}
 
     
 const inputUang = document.getElementById("uang");
